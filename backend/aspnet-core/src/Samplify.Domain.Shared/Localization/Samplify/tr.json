@@ -1,0 +1,15 @@
+{
+  "culture": "tr",
+  "texts": {
+    "Permission:SiteContent": "Site içeriği",
+    "Permission:SiteContent.Update": "Site içeriğini güncelle",
+    "Permission:BlogPosts": "Blog",
+    "Permission:BlogPosts.Manage": "Blog yazılarını yönet",
+    "BlogPostNotFound": "Blog yazısı bulunamadı: {0}",
+    "BlogSlugAlreadyExists": "'{0}' slug’ına sahip bir yazı zaten var.",
+    "AppName": "Samplify",
+    "Menu:Home": "Ana sayfa",
+    "Welcome": "Hoşgeldiniz",
+    "LongWelcomeMessage": "Uygulamaya hoşgeldiniz. Bu, ABP framework'ü üzerine bina edilmiş bir başlangıç projesidir. Daha fazla bilgi için abp.io adresini ziyaret edebilirsiniz."
+  }
+}

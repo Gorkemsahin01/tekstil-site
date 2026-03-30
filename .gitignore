@@ -1,0 +1,15 @@
+node_modules/
+dist/
+
+# ABP / .NET
+backend/**/bin/
+backend/**/obj/
+backend/**/*.db
+backend/**/*.db-shm
+backend/**/*.db-wal
+*.db-shm
+*.db-wal
+backend/**/Logs/
+backend/**/appsettings.secrets.json
+.env
+.env.local

@@ -1,0 +1,62 @@
+export type SiteContent = {
+  brandDisplay: string;
+  brandFooterWatermark: string;
+  home: {
+    heroBadge: string;
+    heroTitleLine1: string;
+    heroTitleHighlight: string;
+    heroSubtitle: string;
+    primaryCta: string;
+    secondaryCta: string;
+    featuresHeading: string;
+    featuresHeadingAccent: string;
+    featuresIntro: string;
+    f1Title: string;
+    f1Body: string;
+    f2Title: string;
+    f2Body: string;
+    f3Title: string;
+    f3Body: string;
+    f4Title: string;
+    f4Body: string;
+    f4LinkLabel: string;
+    ctaTitle: string;
+    ctaSubtitle: string;
+    ctaButton: string;
+  };
+  modules: {
+    badge: string;
+    titleLine1: string;
+    titleLine2: string;
+    intro: string;
+    stTitle: string;
+    stBody: string;
+    stFeatures: [string, string, string];
+    stCardTag: string;
+    stCardTitle: string;
+    mfTitle: string;
+    mfBody: string;
+    mfFeatures: [string, string, string];
+    mfCardTag: string;
+    mfCardTitle: string;
+  };
+  about: {
+    titleLine1: string;
+    titleLine2: string;
+    visionLabel: string;
+    visionTitle: string;
+    whyLabel: string;
+    whyBody: string;
+    ctaTitle: string;
+    ctaBody: string;
+    ctaButton: string;
+  };
+  contact: {
+    badge: string;
+    titleLine1: string;
+    titleHighlight: string;
+    intro: string;
+    email: string;
+    location: string;
+  };
+};

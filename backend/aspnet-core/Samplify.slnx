@@ -1,0 +1,35 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Samplify.Application.Contracts/Samplify.Application.Contracts.csproj" />
+    <Project Path="src/Samplify.Application/Samplify.Application.csproj" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Project Path="src/Samplify.DbMigrator/Samplify.DbMigrator.csproj" />
+    <Project Path="src/Samplify.Domain.Shared/Samplify.Domain.Shared.csproj" />
+    <Project Path="src/Samplify.Domain/Samplify.Domain.csproj" />
+    <Project Path="src/Samplify.EntityFrameworkCore/Samplify.EntityFrameworkCore.csproj" />
+    <Project Path="src/Samplify.HttpApi.Client/Samplify.HttpApi.Client.csproj" />
+    
+    <Project Path="src/Samplify.HttpApi.Host/Samplify.HttpApi.Host.csproj" />
+    <Project Path="src/Samplify.HttpApi/Samplify.HttpApi.csproj" />
+    
+    
+    
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/Samplify.Application.Tests/Samplify.Application.Tests.csproj" />
+    <Project Path="test/Samplify.Domain.Tests/Samplify.Domain.Tests.csproj" />
+    <Project Path="test/Samplify.EntityFrameworkCore.Tests/Samplify.EntityFrameworkCore.Tests.csproj" />
+    <Project Path="test/Samplify.HttpApi.Client.ConsoleTestApp/Samplify.HttpApi.Client.ConsoleTestApp.csproj" />
+    
+    <Project Path="test/Samplify.TestBase/Samplify.TestBase.csproj" />
+    
+  </Folder>
+</Solution>

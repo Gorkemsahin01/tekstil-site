@@ -1,0 +1,15 @@
+{
+  "culture": "en",
+  "texts": {
+    "Permission:SiteContent": "Site content",
+    "Permission:SiteContent.Update": "Update site content",
+    "Permission:BlogPosts": "Blog",
+    "Permission:BlogPosts.Manage": "Manage blog posts",
+    "BlogPostNotFound": "Blog post not found: {0}",
+    "BlogSlugAlreadyExists": "A post with slug '{0}' already exists.",
+    "AppName": "Samplify",
+    "Menu:Home": "Home",
+    "Welcome": "Welcome",
+    "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information, visit abp.io."
+  }
+}
