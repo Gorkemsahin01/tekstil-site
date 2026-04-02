@@ -10,14 +10,14 @@ export default function SamplifyLogo({
   className = '',
   alt = 'Samplify.tr',
 }: Props) {
-  const src = '/samplify-logo.png';
+  const src = '/samplify-logo.jpg';
 
   if (variant === 'mark') {
     return (
       <img
         src={src}
         alt={alt}
-        className={`h-12 w-auto max-w-[280px] object-contain object-left md:h-14 ${className}`}
+        className={`h-12 w-auto max-w-[260px] object-contain object-left md:h-14 md:max-w-[280px] ${className}`}
         loading="eager"
         decoding="async"
         width={280}
@@ -30,11 +30,11 @@ export default function SamplifyLogo({
     <img
       src={src}
       alt={alt}
-      className={`h-auto max-h-16 w-auto max-w-[320px] object-contain object-left md:max-h-20 md:max-w-[360px] ${className}`}
+      className={`h-auto max-h-14 w-auto max-w-[240px] object-contain object-left md:max-h-16 md:max-w-[260px] ${className}`}
       loading="lazy"
       decoding="async"
-      width={360}
-      height={120}
+      width={260}
+      height={100}
     />
   );
 }

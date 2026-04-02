@@ -20,7 +20,7 @@ export default function AdminSidebar() {
       <div className="border-b border-white/5 px-5 py-7">
         <div className="flex items-center gap-3">
           <div className="flex min-h-[3.25rem] min-w-0 shrink-0 items-center justify-center rounded-2xl bg-white/95 p-2 ring-1 ring-white/15">
-            <SamplifyLogo variant="mark" className="!h-11 !max-w-[180px] md:!h-12 md:!max-w-[200px]" />
+            <SamplifyLogo variant="mark" className="!h-9 !max-w-[160px] md:!h-10 md:!max-w-[180px]" />
           </div>
           <div>
             <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-gray-500">

@@ -28,6 +28,11 @@ export type UiStrings = {
   contactPlaceholderName: string;
   contactPlaceholderCompany: string;
   contactPlaceholderEmail: string;
+  /** Bekleme listesi — API ile gönderildiğinde toast */
+  waitlistSentTitle: string;
+  waitlistSentApi: string;
+  /** API kapalıyken mailto açıldığında toast (gönder kullanıcıda) */
+  waitlistSentMailto: string;
   akademiBadge: string;
   akademiTitle: string;
   akademiSubtitle: string;
@@ -75,6 +80,11 @@ const tr: UiStrings = {
   contactPlaceholderName: 'Ad Soyad',
   contactPlaceholderCompany: 'Şirketiniz',
   contactPlaceholderEmail: 'isim@sirket.com',
+  waitlistSentTitle: 'Başarılı',
+  waitlistSentApi:
+    'Başvurunuz başarıyla gönderildi. En kısa sürede size dönüş yapılacaktır.',
+  waitlistSentMailto:
+    'E-posta uygulamanız açıldı. Gönder düğmesine basarak başvurunuzu tamamlayın.',
   akademiBadge: 'Samplify.tr Akademi',
   akademiTitle: 'Bilgi, üretimin yanında.',
   akademiSubtitle:
@@ -124,6 +134,10 @@ const en: UiStrings = {
   contactPlaceholderName: 'Jane Doe',
   contactPlaceholderCompany: 'Your company',
   contactPlaceholderEmail: 'you@company.com',
+  waitlistSentTitle: 'Success',
+  waitlistSentApi: 'Your application was sent successfully. We will get back to you shortly.',
+  waitlistSentMailto:
+    'Your email app should open. Press Send to finish submitting your application.',
   akademiBadge: 'Samplify.tr Academy',
   akademiTitle: 'Knowledge beside production.',
   akademiSubtitle:
@@ -183,6 +197,9 @@ export const UI_STRING_KEYS = [
   'contactPlaceholderName',
   'contactPlaceholderCompany',
   'contactPlaceholderEmail',
+  'waitlistSentTitle',
+  'waitlistSentApi',
+  'waitlistSentMailto',
   'akademiBadge',
   'akademiTitle',
   'akademiSubtitle',

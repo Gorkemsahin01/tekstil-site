@@ -92,7 +92,7 @@ const TR_CONTACT = {
 
 export const DEFAULT_SITE_CONTENT: SiteContent = {
   brandDisplay: { tr: 'Samplify.tr', en: 'Samplify.tr' },
-  brandFooterWatermark: { tr: 'SAMPLIFY.TR', en: 'SAMPLIFY.TR' },
+  brandFooterWatermark: { tr: 'Samplify.tr', en: 'Samplify.tr' },
   ui: {
     tr: { ...DEFAULT_UI_BY_LOCALE.tr },
     en: { ...DEFAULT_UI_BY_LOCALE.en },

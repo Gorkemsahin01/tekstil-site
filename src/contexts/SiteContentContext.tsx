@@ -398,6 +398,30 @@ function applyLegacyAboutContentFixes(content: SiteContent): SiteContent {
   return next;
 }
 
+function applyLegacyBrandFooterWatermark(content: SiteContent): SiteContent {
+  const legacy = 'SAMPLIFY.TR';
+  let next = content;
+  if (next.brandFooterWatermark.tr === legacy) {
+    next = {
+      ...next,
+      brandFooterWatermark: {
+        ...next.brandFooterWatermark,
+        tr: DEFAULT_SITE_CONTENT.brandFooterWatermark.tr,
+      },
+    };
+  }
+  if (next.brandFooterWatermark.en === legacy) {
+    next = {
+      ...next,
+      brandFooterWatermark: {
+        ...next.brandFooterWatermark,
+        en: DEFAULT_SITE_CONTENT.brandFooterWatermark.en,
+      },
+    };
+  }
+  return next;
+}
+
 function isLegacyFlatSiteContent(parsed: unknown): boolean {
   if (!parsed || typeof parsed !== 'object') return false;
   const p = parsed as Record<string, unknown>;
@@ -473,9 +497,11 @@ function parseAndMergeStored(raw: string): SiteContent {
     }
     merged = deepMerge(DEFAULT_SITE_CONTENT, { ...restParsed, ...extra });
   }
-  return applyLegacyAboutContentFixes(
-    applyLegacyModulesContentFixes(
-      applyLegacyUiStringFixes(applyLegacyHomeContentFixes(merged))
+  return applyLegacyBrandFooterWatermark(
+    applyLegacyAboutContentFixes(
+      applyLegacyModulesContentFixes(
+        applyLegacyUiStringFixes(applyLegacyHomeContentFixes(merged))
+      )
     )
   );
 }

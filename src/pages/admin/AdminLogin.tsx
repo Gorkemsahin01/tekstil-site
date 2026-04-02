@@ -89,7 +89,7 @@ export default function AdminLogin() {
                   <div className="rounded-2xl bg-white p-6 shadow-[0_8px_40px_-8px_rgba(0,0,0,0.35)] ring-1 ring-black/5">
                     <SamplifyLogo
                       variant="full"
-                      className="mx-auto max-h-[200px] max-w-[340px] sm:max-h-[230px]"
+                      className="mx-auto max-h-32 max-w-[260px] sm:max-h-36"
                     />
                   </div>
                 </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
+import ScrollToTop from './components/ScrollToTop';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -35,6 +36,7 @@ function App() {
   return (
     <AdminAuthProvider>
       <Router>
+        <ScrollToTop />
         <Routes>
           <Route element={<PublicShell />}>
             <Route path="/" element={<Home />} />
