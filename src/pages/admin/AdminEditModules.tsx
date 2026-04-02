@@ -1,21 +1,34 @@
-import { useState } from 'react';
-import { Save } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Languages, Save } from 'lucide-react';
 import { toast } from 'sonner';
+import type { Locale } from '../../i18n/types';
+import type { ModulesContent } from '../../site/types';
 import { useSiteContent } from '../../contexts/SiteContentContext';
 import AdminField from '../../components/admin/AdminField';
 import AdminFormCard from '../../components/admin/AdminFormCard';
+import AdminLocaleTabs from '../../components/admin/AdminLocaleTabs';
 import AdminPageHeader from '../../components/admin/AdminPageHeader';
 import AdminPrimaryButton from '../../components/admin/AdminPrimaryButton';
 import AdminSectionTitle from '../../components/admin/AdminSectionTitle';
 
 export default function AdminEditModules() {
   const { content, updateContent } = useSiteContent();
-  const [modules, setModules] = useState(content.modules);
+  const [locale, setLocale] = useState<Locale>('tr');
+  const [modTr, setModTr] = useState(content.modules.tr);
+  const [modEn, setModEn] = useState(content.modules.en);
+
+  useEffect(() => {
+    setModTr(content.modules.tr);
+    setModEn(content.modules.en);
+  }, [content.modules]);
+
+  const modules = locale === 'tr' ? modTr : modEn;
+  const setModules = locale === 'tr' ? setModTr : setModEn;
 
   function save() {
-    updateContent({ modules });
+    updateContent({ modules: { tr: modTr, en: modEn } });
     toast.success('Kayıt başarılı', {
-      description: 'Modüller sayfası metinleri güncellendi.',
+      description: 'Modüller sayfası metinleri (TR + EN) güncellendi.',
     });
   }
 
@@ -23,8 +36,16 @@ export default function AdminEditModules() {
     <div>
       <AdminPageHeader
         title="Modüller sayfası"
-        description="/moduller adresindeki başlık ve modül açıklamaları."
+        description="/moduller adresindeki başlık ve modül açıklamaları — her dil için ayrı."
       />
+
+      <div className="mb-6 flex flex-wrap items-center gap-2">
+        <span className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600">
+          <Languages className="h-4 w-4" aria-hidden />
+          Düzenlenen dil:
+        </span>
+        <AdminLocaleTabs locale={locale} onChange={setLocale} />
+      </div>
 
       <AdminFormCard className="space-y-8">
         <div className="space-y-6">
@@ -51,7 +72,7 @@ export default function AdminEditModules() {
           />
         </div>
 
-        <AdminSectionTitle>Sample Tracker</AdminSectionTitle>
+        <AdminSectionTitle>Trackify</AdminSectionTitle>
         <div className="space-y-6 pt-2">
           <AdminField
             label="Başlık"

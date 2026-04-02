@@ -1,23 +1,33 @@
 import { FormEvent, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Lock, Shield } from 'lucide-react';
+import { ArrowRight, Lock, Shield, User } from 'lucide-react';
 import { useAdminAuth } from '../../contexts/AdminAuthContext';
+import { USE_CMS_API } from '../../config/cms';
+import SamplifyLogo from '../../components/branding/SamplifyLogo';
 
 export default function AdminLogin() {
-  const { isAuthenticated, loginWithPassword } = useAdminAuth();
+  const { isAuthenticated, login } = useAdminAuth();
+  const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
 
   if (isAuthenticated) {
     return <Navigate to="/admin/ana-sayfa" replace />;
   }
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    setError(false);
-    if (!loginWithPassword(password)) {
-      setError(true);
+    setError(null);
+    setSubmitting(true);
+    try {
+      const result = await login(userName, password);
+      if (!result.ok) {
+        setError(result.error ?? 'Giriş yapılamadı.');
+      }
+    } finally {
+      setSubmitting(false);
     }
   }
 
@@ -77,12 +87,9 @@ export default function AdminLogin() {
               <div className="rounded-[1.65rem] bg-gradient-to-b from-white/[0.07] to-transparent px-6 pb-8 pt-10 sm:px-10 sm:pb-10 sm:pt-12">
                 <div className="mb-8 flex justify-center">
                   <div className="rounded-2xl bg-white p-6 shadow-[0_8px_40px_-8px_rgba(0,0,0,0.35)] ring-1 ring-black/5">
-                    <img
-                      src="/samplify-logo.png"
-                      alt="Samplify.tr"
-                      className="mx-auto h-auto w-full max-w-[220px] object-contain sm:max-w-[260px]"
-                      width={260}
-                      height={120}
+                    <SamplifyLogo
+                      variant="full"
+                      className="mx-auto max-h-[200px] max-w-[340px] sm:max-h-[230px]"
                     />
                   </div>
                 </div>
@@ -92,11 +99,38 @@ export default function AdminLogin() {
                     Yönetici girişi
                   </h1>
                   <p className="mt-2 text-sm text-white/45">
-                    Devam etmek için yönetici şifrenizi girin.
+                    {USE_CMS_API
+                      ? 'ABP hesabınızla giriş yapın (site içeriği sunucuya kaydedilir).'
+                      : 'Devam etmek için yönetici şifrenizi girin.'}
                   </p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-5">
+                  {USE_CMS_API && (
+                    <div>
+                      <label
+                        htmlFor="admin-username"
+                        className="mb-2 block text-left text-xs font-semibold uppercase tracking-wider text-white/50"
+                      >
+                        Kullanıcı adı veya e-posta
+                      </label>
+                      <div className="relative">
+                        <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-white/35">
+                          <User className="h-[18px] w-[18px]" aria-hidden />
+                        </span>
+                        <input
+                          id="admin-username"
+                          type="text"
+                          autoComplete="username"
+                          value={userName}
+                          onChange={(e) => setUserName(e.target.value)}
+                          className="w-full rounded-xl border border-white/[0.1] bg-[#0c0f18] py-3.5 pl-12 pr-4 text-[15px] text-white placeholder:text-white/25 outline-none ring-0 transition focus:border-brand-500/50 focus:bg-[#0e121c] focus:shadow-[0_0_0_3px_rgba(139,92,246,0.15)]"
+                          placeholder="admin@abp.io"
+                        />
+                      </div>
+                    </div>
+                  )}
+
                   <div>
                     <label
                       htmlFor="admin-password"
@@ -125,15 +159,16 @@ export default function AdminLogin() {
                       className="rounded-lg border border-red-500/20 bg-red-500/10 px-3 py-2 text-center text-sm text-red-300"
                       role="alert"
                     >
-                      Şifre hatalı. Tekrar deneyin.
+                      {error}
                     </p>
                   )}
 
                   <button
                     type="submit"
-                    className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-brand-600 to-violet-600 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-900/30 transition hover:from-brand-500 hover:to-violet-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400/60"
+                    disabled={submitting}
+                    className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-brand-600 to-violet-600 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-900/30 transition hover:from-brand-500 hover:to-violet-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400/60 disabled:opacity-60"
                   >
-                    <span>Giriş yap</span>
+                    <span>{submitting ? 'Giriş yapılıyor…' : 'Giriş yap'}</span>
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                   </button>
                 </form>

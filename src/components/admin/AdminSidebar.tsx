@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
-import { BookOpen, FileText, Home, Layers, LayoutDashboard, Mail, LogOut } from 'lucide-react';
+import { BookOpen, FileText, Home, Languages, Layers, Mail, LogOut } from 'lucide-react';
+import SamplifyLogo from '../branding/SamplifyLogo';
 import { useAdminAuth } from '../../contexts/AdminAuthContext';
 
 const nav = [
@@ -8,6 +9,7 @@ const nav = [
   { to: '/admin/hakkimizda', label: 'Hakkımızda', icon: FileText },
   { to: '/admin/iletisim', label: 'İletişim', icon: Mail },
   { to: '/admin/akademi', label: 'Akademi (blog)', icon: BookOpen },
+  { to: '/admin/arayuz', label: 'Arayüz metinleri', icon: Languages },
 ];
 
 export default function AdminSidebar() {
@@ -17,14 +19,14 @@ export default function AdminSidebar() {
     <aside className="sticky top-0 z-30 flex h-screen w-[288px] shrink-0 flex-col border-r border-white/[0.06] bg-gradient-to-b from-[#0c0f18] via-gray-950 to-[#06080f] text-gray-100 shadow-[8px_0_40px_-12px_rgba(0,0,0,0.5)]">
       <div className="border-b border-white/5 px-5 py-7">
         <div className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500/25 to-violet-600/20 ring-1 ring-white/10">
-            <LayoutDashboard className="h-5 w-5 text-brand-200" aria-hidden />
+          <div className="flex min-h-[3.25rem] min-w-0 shrink-0 items-center justify-center rounded-2xl bg-white/95 p-2 ring-1 ring-white/15">
+            <SamplifyLogo variant="mark" className="!h-11 !max-w-[180px] md:!h-12 md:!max-w-[200px]" />
           </div>
           <div>
             <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-gray-500">
               Yönetim
             </p>
-            <p className="text-[15px] font-semibold tracking-tight text-white">Samplify.tr</p>
+            <p className="text-[13px] font-medium leading-snug text-gray-400">İçerik paneli</p>
           </div>
         </div>
         <p className="mt-4 text-xs leading-relaxed text-gray-500">

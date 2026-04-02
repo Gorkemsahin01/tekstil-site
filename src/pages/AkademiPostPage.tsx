@@ -5,6 +5,7 @@ import { toast } from 'sonner';
 import { useBlogPosts } from '../contexts/BlogPostsContext';
 import { getAkademiPostBySlug } from '../data/akademiPosts';
 import { useLocale } from '../contexts/LocaleContext';
+import { usePublicSiteContent } from '../hooks/usePublicSiteContent';
 import { useUiStrings } from '../hooks/useUiStrings';
 
 export default function AkademiPostPage() {
@@ -12,6 +13,7 @@ export default function AkademiPostPage() {
   const { posts } = useBlogPosts();
   const post = getAkademiPostBySlug(slug, posts);
   const { locale } = useLocale();
+  const { content } = usePublicSiteContent();
   const ui = useUiStrings();
 
   if (!post) {
@@ -118,7 +120,7 @@ export default function AkademiPostPage() {
           className="mt-16 rounded-3xl border border-gray-200 bg-gradient-to-br from-white to-gray-50 p-8 dark:border-gray-800 dark:from-gray-900 dark:to-gray-950"
         >
           <p className="mb-4 text-sm font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">
-            Samplify.tr
+            {content.brandDisplay}
           </p>
           <p className="text-gray-600 dark:text-gray-400">{ui.akademiPostFooter}</p>
           <Link

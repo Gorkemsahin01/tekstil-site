@@ -20,13 +20,28 @@ import type { AkademiPost } from '../data/akademiPosts';
 
 const STORAGE_KEY = 'samplify_blog_posts_v1';
 
+/** Unsplash’ta kaldırılmış fotoğraf (404); eski seed/API kayıtlarında kalabilir */
+const REMOVED_UNSPLASH_ID = 'photo-1581091226825-a6a2a5a158d5';
+const TECH_PACK_POST_IMAGE_FIX =
+  'https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1200&q=80';
+
+function fixRemovedBlogImages(posts: AkademiPost[]): AkademiPost[] {
+  return posts.map((p) =>
+    p.image?.includes(REMOVED_UNSPLASH_ID) ? { ...p, image: TECH_PACK_POST_IMAGE_FIX } : p
+  );
+}
+
 function loadStored(): AkademiPost[] {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return [...DEFAULT_AKADEMI_POSTS];
     const parsed = JSON.parse(raw) as AkademiPost[];
     if (!Array.isArray(parsed) || parsed.length === 0) return [...DEFAULT_AKADEMI_POSTS];
-    return parsed;
+    const fixed = fixRemovedBlogImages(parsed);
+    if (JSON.stringify(fixed) !== JSON.stringify(parsed)) {
+      writeStorage(fixed);
+    }
+    return fixed;
   } catch {
     return [...DEFAULT_AKADEMI_POSTS];
   }
@@ -75,7 +90,7 @@ export function BlogPostsProvider({ children }: { children: React.ReactNode }) {
     void (async () => {
       try {
         const list = await fetchBlogPosts();
-        const mapped = list.map(mapApiBlogToAkademi);
+        const mapped = fixRemovedBlogImages(list.map(mapApiBlogToAkademi));
         if (!cancelled) {
           setPostsState(mapped);
           writeStorage(mapped);
@@ -121,7 +136,7 @@ export function BlogPostsProvider({ children }: { children: React.ReactNode }) {
             await createBlogPost(input);
           }
           const list = await fetchBlogPosts();
-          const mapped = list.map(mapApiBlogToAkademi);
+          const mapped = fixRemovedBlogImages(list.map(mapApiBlogToAkademi));
           setPostsState(mapped);
           writeStorage(mapped);
         } catch {
@@ -153,7 +168,7 @@ export function BlogPostsProvider({ children }: { children: React.ReactNode }) {
         try {
           await deleteBlogPost(target.entityId!);
           const list = await fetchBlogPosts();
-          const mapped = list.map(mapApiBlogToAkademi);
+          const mapped = fixRemovedBlogImages(list.map(mapApiBlogToAkademi));
           setPostsState(mapped);
           writeStorage(mapped);
         } catch {

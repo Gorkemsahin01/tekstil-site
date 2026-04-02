@@ -1,5 +1,5 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
+import SamplifyLogo from './branding/SamplifyLogo';
 import { usePublicSiteContent } from '../hooks/usePublicSiteContent';
 import { useUiStrings } from '../hooks/useUiStrings';
 
@@ -11,10 +11,8 @@ export default function Footer() {
     <footer className="border-t border-gray-200/50 bg-[#FAFAFA] pb-10 pt-20 overflow-hidden dark:border-gray-800 dark:bg-gray-950">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-20 flex flex-col items-center justify-between gap-8 md:flex-row">
-          <div className="flex flex-col items-center gap-2 text-center md:items-start md:text-left">
-            <span className="text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-              {content.brandDisplay}
-            </span>
+          <div className="flex flex-col items-center gap-4 text-center md:items-start md:text-left">
+            <SamplifyLogo variant="full" />
             <p className="font-medium text-gray-500 dark:text-gray-400">{ui.footerTagline}</p>
           </div>
 
@@ -42,7 +40,7 @@ export default function Footer() {
 
         <div className="flex flex-col items-center justify-between gap-4 border-t border-gray-200/50 pt-8 text-sm font-medium text-gray-400 dark:border-gray-800 md:flex-row">
           <p>
-            &copy; {new Date().getFullYear()} Samplify.tr. {ui.footerCopyright}
+            &copy; {new Date().getFullYear()} {content.brandDisplay}. {ui.footerCopyright}
           </p>
           <div className="flex gap-6">
             <a href="#" className="transition-colors hover:text-gray-900 dark:hover:text-white">

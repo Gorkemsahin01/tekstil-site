@@ -56,13 +56,10 @@ export default function Navbar() {
         <div className="flex items-center justify-between gap-2">
           <Link
             to="/"
-            className="flex min-w-0 items-center gap-2 md:gap-3 outline-none focus-visible:ring-2 focus-visible:ring-brand-500/40 rounded-xl shrink-0"
+            className="flex min-w-0 items-center outline-none focus-visible:ring-2 focus-visible:ring-brand-500/40 rounded-xl shrink-0"
+            aria-label={content.brandDisplay}
           >
             <SamplifyLogo variant="mark" />
-            <span className="truncate font-extrabold text-lg tracking-tight text-gray-900 dark:text-white md:text-xl">
-              Samplify.tr
-            </span>
-            <span className="sr-only">{content.brandDisplay}</span>
           </Link>
 
           <div className="hidden md:flex flex-1 justify-center px-2 min-w-0">

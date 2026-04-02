@@ -2,10 +2,12 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ClipboardList, Ruler, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLocale } from '../contexts/LocaleContext';
 import { usePublicSiteContent } from '../hooks/usePublicSiteContent';
 import { useUiStrings } from '../hooks/useUiStrings';
 
 export default function ModulesPage() {
+  const { locale } = useLocale();
   const { content } = usePublicSiteContent();
   const m = content.modules;
   const ui = useUiStrings();
@@ -76,7 +78,11 @@ export default function ModulesPage() {
               <div className="relative aspect-square overflow-hidden rounded-[2.5rem] border border-gray-200/80 bg-gray-100 shadow-2xl dark:border-gray-700">
                 <img
                   src="/module-sample.jpg"
-                  alt="ERP analitik ve operasyon paneli — Sample Tracker"
+                  alt={
+                    locale === 'tr'
+                      ? `${m.stTitle} — operasyon paneli önizlemesi`
+                      : `${m.stTitle} — operations panel preview`
+                  }
                   className="absolute inset-0 h-full w-full object-cover object-center"
                   width={1000}
                   height={1000}
