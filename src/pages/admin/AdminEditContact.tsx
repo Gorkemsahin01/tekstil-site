@@ -1,20 +1,32 @@
-import { useState } from 'react';
-import { Save } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Languages, Save } from 'lucide-react';
 import { toast } from 'sonner';
+import type { Locale } from '../../i18n/types';
 import { useSiteContent } from '../../contexts/SiteContentContext';
 import AdminField from '../../components/admin/AdminField';
 import AdminFormCard from '../../components/admin/AdminFormCard';
+import AdminLocaleTabs from '../../components/admin/AdminLocaleTabs';
 import AdminPageHeader from '../../components/admin/AdminPageHeader';
 import AdminPrimaryButton from '../../components/admin/AdminPrimaryButton';
 
 export default function AdminEditContact() {
   const { content, updateContent } = useSiteContent();
-  const [contact, setContact] = useState(content.contact);
+  const [locale, setLocale] = useState<Locale>('tr');
+  const [contactTr, setContactTr] = useState(content.contact.tr);
+  const [contactEn, setContactEn] = useState(content.contact.en);
+
+  useEffect(() => {
+    setContactTr(content.contact.tr);
+    setContactEn(content.contact.en);
+  }, [content.contact]);
+
+  const contact = locale === 'tr' ? contactTr : contactEn;
+  const setContact = locale === 'tr' ? setContactTr : setContactEn;
 
   function save() {
-    updateContent({ contact });
+    updateContent({ contact: { tr: contactTr, en: contactEn } });
     toast.success('Kayıt başarılı', {
-      description: 'İletişim sayfası metinleri güncellendi.',
+      description: 'İletişim sayfası metinleri (TR + EN) güncellendi.',
     });
   }
 
@@ -22,8 +34,16 @@ export default function AdminEditContact() {
     <div>
       <AdminPageHeader
         title="İletişim"
-        description="/iletisim sayfası üst metinleri ve iletişim bilgileri."
+        description="/iletisim üst metinleri ve iletişim bilgileri — her dil için ayrı (e-posta/konum farklı olabilir)."
       />
+
+      <div className="mb-6 flex flex-wrap items-center gap-2">
+        <span className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600">
+          <Languages className="h-4 w-4" aria-hidden />
+          Düzenlenen dil:
+        </span>
+        <AdminLocaleTabs locale={locale} onChange={setLocale} />
+      </div>
 
       <AdminFormCard className="space-y-6">
         <AdminField label="Rozet" value={contact.badge} onChange={(v) => setContact({ ...contact, badge: v })} />

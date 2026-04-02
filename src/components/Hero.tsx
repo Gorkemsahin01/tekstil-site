@@ -109,7 +109,7 @@ export default function Hero() {
               <div className="group relative pt-12">
                 <img
                   src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2015&q=80"
-                  alt="Samplify.tr ERP arayüzü"
+                  alt={ui.heroImageAlt}
                   className="h-[400px] w-full object-cover object-top contrast-100 brightness-105 filter md:h-[600px]"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-900/20 to-transparent" />

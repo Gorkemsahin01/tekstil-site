@@ -18,6 +18,8 @@ export type UiStrings = {
   heroStatProduction: string;
   heroStatWorkshop: string;
   heroMockUrl: string;
+  /** Hero görseli alt metni */
+  heroImageAlt: string;
   modulesEarlyAccessCta: string;
   contactName: string;
   contactCompany: string;
@@ -53,7 +55,7 @@ const tr: UiStrings = {
   navAkademi: 'Samplify.tr Akademi',
   navEarlyAccess: 'Erken Erişim',
   navEarlyAccessMobile: 'Erken Erişim Talep Et',
-  footerTagline: "Tekstil ERP'sinin Yeni Yüzü.",
+  footerTagline: 'Yeni Nesil Tekstil Ür-Ge Platformu.',
   footerModules: 'Modüller',
   footerVision: 'Vizyon',
   footerAkademi: 'Samplify.tr Akademi',
@@ -62,8 +64,9 @@ const tr: UiStrings = {
   footerPrivacy: 'Gizlilik',
   footerTerms: 'Şartlar',
   heroStatProduction: 'Üretim Hızı',
-  heroStatWorkshop: 'Aktif Atölye',
+  heroStatWorkshop: 'Aktif Kullanıcı',
   heroMockUrl: 'samplify.tr',
+  heroImageAlt: 'Samplify.tr ERP arayüzü',
   modulesEarlyAccessCta: 'Erken Erişim İste',
   contactName: 'Ad Soyad',
   contactCompany: 'Firma Adı',
@@ -101,7 +104,7 @@ const en: UiStrings = {
   navAkademi: 'Samplify.tr Academy',
   navEarlyAccess: 'Early access',
   navEarlyAccessMobile: 'Request early access',
-  footerTagline: 'The new face of textile ERP.',
+  footerTagline: 'The new generation textile R&D platform.',
   footerModules: 'Modules',
   footerVision: 'Vision',
   footerAkademi: 'Samplify.tr Academy',
@@ -110,8 +113,9 @@ const en: UiStrings = {
   footerPrivacy: 'Privacy',
   footerTerms: 'Terms',
   heroStatProduction: 'Production pace',
-  heroStatWorkshop: 'Active workshops',
+  heroStatWorkshop: 'Active users',
   heroMockUrl: 'samplify.tr',
+  heroImageAlt: 'Samplify.tr ERP interface preview',
   modulesEarlyAccessCta: 'Request early access',
   contactName: 'Full name',
   contactCompany: 'Company',
@@ -144,6 +148,57 @@ const en: UiStrings = {
 
 const byLocale: Record<Locale, UiStrings> = { tr, en };
 
+/** Varsayılan site içeriği + admin düzenlemesi için */
+export const DEFAULT_UI_BY_LOCALE: Record<Locale, UiStrings> = { tr, en };
+
 export function getUiStrings(locale: Locale): UiStrings {
   return byLocale[locale];
 }
+
+/** Admin formunda tüm alanları sırayla göstermek için */
+export const UI_STRING_KEYS = [
+  'navDiscover',
+  'navModules',
+  'navVision',
+  'navAkademi',
+  'navEarlyAccess',
+  'navEarlyAccessMobile',
+  'footerTagline',
+  'footerModules',
+  'footerVision',
+  'footerAkademi',
+  'footerContact',
+  'footerCopyright',
+  'footerPrivacy',
+  'footerTerms',
+  'heroStatProduction',
+  'heroStatWorkshop',
+  'heroMockUrl',
+  'heroImageAlt',
+  'modulesEarlyAccessCta',
+  'contactName',
+  'contactCompany',
+  'contactEmail',
+  'contactSubmit',
+  'contactPlaceholderName',
+  'contactPlaceholderCompany',
+  'contactPlaceholderEmail',
+  'akademiBadge',
+  'akademiTitle',
+  'akademiSubtitle',
+  'akademiReadMore',
+  'akademiFeatured',
+  'akademiNewsletterTitle',
+  'akademiNewsletterSubtitle',
+  'akademiNewsletterPlaceholder',
+  'akademiNewsletterButton',
+  'akademiBackToList',
+  'akademiShare',
+  'akademiPostFooter',
+  'akademiLinkCopied',
+  'akademiEmpty',
+  'themeLight',
+  'themeDark',
+  'langTurkish',
+  'langEnglish',
+] as const satisfies readonly (keyof UiStrings)[];

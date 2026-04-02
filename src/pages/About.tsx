@@ -1,7 +1,23 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { usePublicSiteContent } from '../hooks/usePublicSiteContent';
+
+/** Örn. "Neden Samplify.tr?" → önek ve son büyük harf, marka doğal: Samplify.tr */
+function WhySectionLabel({ label }: { label: string }) {
+  const m = label.match(/^(.*?)\s*Samplify\.tr\s*(.*)$/i);
+  if (!m) {
+    return <>{label}</>;
+  }
+  const prefix = m[1].trim();
+  const suffix = m[2];
+  return (
+    <>
+      <span className="uppercase">{prefix} </span>
+      <span className="normal-case tracking-normal">Samplify.tr</span>
+      <span className="uppercase">{suffix}</span>
+    </>
+  );
+}
 
 export default function About() {
   const { content } = usePublicSiteContent();
@@ -57,8 +73,8 @@ export default function About() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3 }}
             >
-              <h3 className="mb-4 text-sm font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
-                {a.whyLabel}
+              <h3 className="mb-4 text-sm font-bold tracking-widest text-brand-600 dark:text-brand-400">
+                <WhySectionLabel label={a.whyLabel} />
               </h3>
               <p className="text-xl leading-relaxed text-gray-600 dark:text-gray-400">{a.whyBody}</p>
             </motion.div>

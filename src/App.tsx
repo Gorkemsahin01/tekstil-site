@@ -17,6 +17,7 @@ import AdminEditModules from './pages/admin/AdminEditModules';
 import AdminEditAbout from './pages/admin/AdminEditAbout';
 import AdminEditContact from './pages/admin/AdminEditContact';
 import AdminEditBlog from './pages/admin/AdminEditBlog';
+import AdminEditUi from './pages/admin/AdminEditUi';
 
 function PublicShell() {
   return (
@@ -53,6 +54,7 @@ function App() {
                 <Route path="hakkimizda" element={<AdminEditAbout />} />
                 <Route path="iletisim" element={<AdminEditContact />} />
                 <Route path="akademi" element={<AdminEditBlog />} />
+                <Route path="arayuz" element={<AdminEditUi />} />
               </Route>
             </Route>
           </Route>

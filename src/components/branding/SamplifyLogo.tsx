@@ -1,13 +1,10 @@
 type Props = {
+  /** mark: üst bar / dar alanlar — tam logo (ikon + wordmark), küçük yükseklik */
   variant?: 'full' | 'mark';
   className?: string;
   alt?: string;
 };
 
-/**
- * mark: Küçük kare (navbar / footer) — logo dosyasının üst bölümüne odaklanır
- * full: Tam logo
- */
 export default function SamplifyLogo({
   variant = 'full',
   className = '',
@@ -17,17 +14,15 @@ export default function SamplifyLogo({
 
   if (variant === 'mark') {
     return (
-      <div
-        className={`flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-gray-200/90 dark:bg-gray-900 dark:ring-gray-700 ${className}`}
-      >
-        <img
-          src={src}
-          alt={alt}
-          className="h-full w-full object-cover object-top"
-          loading="eager"
-          decoding="async"
-        />
-      </div>
+      <img
+        src={src}
+        alt={alt}
+        className={`h-12 w-auto max-w-[280px] object-contain object-left md:h-14 ${className}`}
+        loading="eager"
+        decoding="async"
+        width={280}
+        height={56}
+      />
     );
   }
 
@@ -35,9 +30,11 @@ export default function SamplifyLogo({
     <img
       src={src}
       alt={alt}
-      className={`h-auto w-auto max-w-full object-contain object-left ${className}`}
+      className={`h-auto max-h-16 w-auto max-w-[320px] object-contain object-left md:max-h-20 md:max-w-[360px] ${className}`}
       loading="lazy"
       decoding="async"
+      width={360}
+      height={120}
     />
   );
 }

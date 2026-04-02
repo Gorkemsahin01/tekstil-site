@@ -53,7 +53,7 @@ export const DEFAULT_AKADEMI_POSTS: AkademiPost[] = [
     id: '2',
     slug: 'tech-pack-olcu-tablolari',
     image:
-      'https://images.unsplash.com/photo-1581091226825-a6a2a5a158d5?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1200&q=80',
     category: { tr: 'Üretim', en: 'Production' },
     date: '2026-03-05',
     title: {
