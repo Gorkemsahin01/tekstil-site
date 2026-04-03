@@ -1,12 +1,13 @@
+using System;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using MailKit.Net.Smtp;
 using MailKit.Security;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using MimeKit;
 using Volo.Abp.BackgroundJobs;
-using Volo.Abp.Emailing;
 using Volo.Abp.Emailing.Smtp;
 using Volo.Abp.MailKit;
 using Volo.Abp.MultiTenancy;
@@ -15,17 +16,21 @@ namespace Samplify;
 
 /// <summary>
 /// MailKit SMTP sender that accepts all server certificates.
-/// Overrides SendEmailAsync to set cert callback before connect.
+/// Reads credentials from IConfiguration to avoid ABP encrypted-settings issue.
 /// </summary>
 public class TrustAllCertMailKitSmtpEmailSender : MailKitSmtpEmailSender
 {
+    private readonly IConfiguration _configuration;
+
     public TrustAllCertMailKitSmtpEmailSender(
         ICurrentTenant currentTenant,
         ISmtpEmailSenderConfiguration configuration,
         IBackgroundJobManager backgroundJobManager,
-        IOptions<AbpMailKitOptions> options)
+        IOptions<AbpMailKitOptions> options,
+        IConfiguration appConfiguration)
         : base(currentTenant, configuration, backgroundJobManager, options)
     {
+        _configuration = appConfiguration;
     }
 
     protected override async Task SendEmailAsync(System.Net.Mail.MailMessage mail)
@@ -41,9 +46,13 @@ public class TrustAllCertMailKitSmtpEmailSender : MailKitSmtpEmailSender
 
         await client.ConnectAsync(host, port, option);
 
-        var userName = await SmtpConfiguration.GetUserNameAsync();
-        var password = await SmtpConfiguration.GetPasswordAsync();
-        if (!string.IsNullOrEmpty(userName))
+        // Read credentials from env/config directly to avoid ABP decrypt issue
+        var userName = _configuration["Settings:Abp.Mailing.Smtp.UserName"]
+            ?? Environment.GetEnvironmentVariable("SMTP_USERNAME");
+        var password = _configuration["Settings:Abp.Mailing.Smtp.Password"]
+            ?? Environment.GetEnvironmentVariable("SMTP_PASSWORD");
+
+        if (!string.IsNullOrEmpty(userName) && !string.IsNullOrEmpty(password))
         {
             await client.AuthenticateAsync(userName, password);
         }
