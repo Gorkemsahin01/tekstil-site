@@ -2,6 +2,7 @@ using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using MailKit.Net.Smtp;
+using MailKit.Security;
 using Microsoft.Extensions.Options;
 using Volo.Abp.BackgroundJobs;
 using Volo.Abp.Emailing.Smtp;
@@ -25,10 +26,19 @@ public class TrustAllCertMailKitSmtpEmailSender : MailKitSmtpEmailSender
     {
     }
 
-    protected override async Task ConfigureClient(SmtpClient client)
+    protected override async Task<SmtpClient> BuildClientAsync()
     {
+        var client = new SmtpClient();
         client.ServerCertificateValidationCallback = AcceptAll;
-        await base.ConfigureClient(client);
+
+        var host = await SmtpConfiguration.GetHostAsync();
+        var port = await SmtpConfiguration.GetPortAsync();
+        var option = GetSecureSocketOption();
+
+        await client.ConnectAsync(host, port, option);
+        await ConfigureClient(client);
+
+        return client;
     }
 
     private static bool AcceptAll(object sender, X509Certificate? certificate,

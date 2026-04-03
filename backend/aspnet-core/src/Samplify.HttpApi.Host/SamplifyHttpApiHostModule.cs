@@ -76,7 +76,7 @@ public class SamplifyHttpApiHostModule : AbpModule
 
         Configure<AbpMailKitOptions>(options =>
         {
-            options.SecureSocketOption = MailKit.Security.SecureSocketOptions.SslOnConnect;
+            options.SecureSocketOption = MailKit.Security.SecureSocketOptions.StartTls;
         });
 
         context.Services.Replace(
