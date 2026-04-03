@@ -61,6 +61,21 @@ public class WaitlistAppService : SamplifyAppService, IWaitlistAppService
 
     Logger.LogInformation("Waitlist submit to {Recipient} from {Email}", to, input.Email);
 
+    // Bildirim maili (info@samplify.tr'ye)
     await _emailSender.SendAsync(to, subject, body);
+
+    // Başvurana onay maili
+    var confirmSubject = "Samplify.tr — Bekleme listesine kaydınız alındı";
+    var confirmBody = new StringBuilder()
+      .AppendLine($"Merhaba {input.FullName},")
+      .AppendLine()
+      .AppendLine("Bekleme listesine kaydınız başarıyla alınmıştır.")
+      .AppendLine("En kısa sürede sizinle iletişime geçeceğiz.")
+      .AppendLine()
+      .AppendLine("Teşekkür ederiz,")
+      .Append("Samplify.tr Ekibi")
+      .ToString();
+
+    await _emailSender.SendAsync(input.Email, confirmSubject, confirmBody);
   }
 }
