@@ -1,0 +1,104 @@
+services:
+
+  # ---------- Traefik Reverse Proxy ----------
+  traefik:
+    image: traefik:v2.11
+    container_name: samplify-traefik
+    restart: unless-stopped
+    command:
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+      - "--certificatesresolvers.letsencrypt.acme.httpchallenge=true"
+      - "--certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web"
+      - "--certificatesresolvers.letsencrypt.acme.email=${ACME_EMAIL:-admin@samplify.tr}"
+      - "--certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json"
+    environment:
+      - DOCKER_API_VERSION=1.45
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - letsencrypt:/letsencrypt
+    networks:
+      - internal
+
+  # ---------- PostgreSQL ----------
+  postgres:
+    image: postgres:16-alpine
+    container_name: samplify-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: samplify
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-lul6kb9HXGjrXviB7sij56QT}
+      POSTGRES_DB: Samplify
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - internal
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U samplify -d Samplify"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  # ---------- DB Migration ----------
+  migrator:
+    image: ghcr.io/tahirberktopcu1/samplify-migrator:latest
+    container_name: samplify-migrator
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      ConnectionStrings__Default: "Host=postgres;Port=5432;Database=Samplify;Username=samplify;Password=${DB_PASSWORD:-lul6kb9HXGjrXviB7sij56QT}"
+    networks:
+      - internal
+
+  # ---------- Backend API ----------
+  api:
+    image: ghcr.io/tahirberktopcu1/samplify-api:latest
+    container_name: samplify-api
+    restart: unless-stopped
+    depends_on:
+      migrator:
+        condition: service_completed_successfully
+    environment:
+      ConnectionStrings__Default: "Host=postgres;Port=5432;Database=Samplify;Username=samplify;Password=${DB_PASSWORD:-lul6kb9HXGjrXviB7sij56QT}"
+      App__SelfUrl: "https://samplify.tr"
+      App__CorsOrigins: "https://samplify.tr,https://www.samplify.tr"
+      AuthServer__Authority: "https://samplify.tr"
+      ASPNETCORE_ENVIRONMENT: Production
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.api.rule=Host(`samplify.tr`) && (PathPrefix(`/api`) || PathPrefix(`/connect`) || PathPrefix(`/swagger`))"
+      - "traefik.http.routers.api.entrypoints=websecure"
+      - "traefik.http.routers.api.tls.certresolver=letsencrypt"
+      - "traefik.http.services.api.loadbalancer.server.port=8080"
+    networks:
+      - internal
+
+  # ---------- Frontend ----------
+  frontend:
+    image: ghcr.io/tahirberktopcu1/samplify-frontend:latest
+    container_name: samplify-frontend
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend.rule=Host(`samplify.tr`) || Host(`www.samplify.tr`)"
+      - "traefik.http.routers.frontend.entrypoints=websecure"
+      - "traefik.http.routers.frontend.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.frontend.priority=1"
+      - "traefik.http.services.frontend.loadbalancer.server.port=80"
+    networks:
+      - internal
+
+volumes:
+  pgdata:
+  letsencrypt:
+
+networks:
+  internal:

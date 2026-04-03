@@ -13,3 +13,4 @@ backend/**/Logs/
 backend/**/appsettings.secrets.json
 .env
 .env.local
+.env.production
