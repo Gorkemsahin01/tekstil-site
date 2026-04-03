@@ -72,6 +72,14 @@ services:
       App__CorsOrigins: "https://samplify.tr,https://www.samplify.tr"
       AuthServer__Authority: "https://samplify.tr"
       ASPNETCORE_ENVIRONMENT: Production
+      Settings__Abp.Mailing.Smtp.Host: "mail.kurumsaleposta.com"
+      Settings__Abp.Mailing.Smtp.Port: "465"
+      Settings__Abp.Mailing.Smtp.UserName: "${SMTP_USERNAME:-info@samplify.tr}"
+      Settings__Abp.Mailing.Smtp.Password: "${SMTP_PASSWORD}"
+      Settings__Abp.Mailing.Smtp.EnableSsl: "true"
+      Settings__Abp.Mailing.Smtp.UseDefaultCredentials: "false"
+      Settings__Abp.Mailing.DefaultFromAddress: "info@samplify.tr"
+      Settings__Abp.Mailing.DefaultFromDisplayName: "Samplify.tr"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.api.rule=Host(`samplify.tr`) && (PathPrefix(`/api`) || PathPrefix(`/connect`) || PathPrefix(`/swagger`))"

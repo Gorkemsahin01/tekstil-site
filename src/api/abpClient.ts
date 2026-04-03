@@ -19,10 +19,24 @@ export const abpClient = axios.create({
   },
 });
 
+/** ABP application-configuration endpoint'ini çağırarak XSRF-TOKEN cookie'sini set eder. */
+export function initAbpCsrf(): void {
+  abpClient.get('/api/abp/application-configuration').catch(() => {});
+}
+
+function getCookieValue(name: string): string | undefined {
+  const match = document.cookie.match(new RegExp(`(?:^|;\\s*)${name}=([^;]*)`));
+  return match ? decodeURIComponent(match[1]) : undefined;
+}
+
 abpClient.interceptors.request.use((config) => {
   const token = localStorage.getItem(STORAGE_ACCESS_TOKEN);
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
+  }
+  const xsrfToken = getCookieValue('XSRF-TOKEN');
+  if (xsrfToken) {
+    config.headers['RequestVerificationToken'] = xsrfToken;
   }
   return config;
 });

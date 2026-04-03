@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
+import { initAbpCsrf } from './api/abpClient';
 import ScrollToTop from './components/ScrollToTop';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -33,6 +34,8 @@ function PublicShell() {
 }
 
 function App() {
+  useEffect(() => { initAbpCsrf(); }, []);
+
   return (
     <AdminAuthProvider>
       <Router>

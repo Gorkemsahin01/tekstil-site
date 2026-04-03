@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Samplify.EntityFrameworkCore;
 using Samplify.MultiTenancy;
@@ -31,6 +32,7 @@ using Volo.Abp.Security.Claims;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.VirtualFileSystem;
+using Volo.Abp.Emailing;
 using Volo.Abp.MailKit;
 
 namespace Samplify;
@@ -71,6 +73,14 @@ public class SamplifyHttpApiHostModule : AbpModule
         {
             options.CheckLibs = false;
         });
+
+        Configure<AbpMailKitOptions>(options =>
+        {
+            options.SecureSocketOption = MailKit.Security.SecureSocketOptions.SslOnConnect;
+        });
+
+        context.Services.Replace(
+            ServiceDescriptor.Transient<IEmailSender, TrustAllCertMailKitSmtpEmailSender>());
 
         ConfigureAuthentication(context);
         ConfigureBundles();

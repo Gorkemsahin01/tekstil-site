@@ -61,8 +61,6 @@ public class SamplifyDomainModule : AbpModule
             options.IsEnabled = MultiTenancyConsts.IsEnabled;
         });
 
-#if DEBUG
-        context.Services.Replace(ServiceDescriptor.Singleton<IEmailSender, NullEmailSender>());
-#endif
+        // NullEmailSender kaldırıldı – DEBUG modda da gerçek SMTP kullanılsın
     }
 }
