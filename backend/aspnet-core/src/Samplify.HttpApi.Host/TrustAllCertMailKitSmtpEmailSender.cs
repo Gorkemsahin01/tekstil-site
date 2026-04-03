@@ -37,7 +37,7 @@ public class TrustAllCertMailKitSmtpEmailSender : MailKitSmtpEmailSender
 
         var host = await SmtpConfiguration.GetHostAsync();
         var port = await SmtpConfiguration.GetPortAsync();
-        var option = GetSecureSocketOption();
+        var option = await GetSecureSocketOption();
 
         await client.ConnectAsync(host, port, option);
 
