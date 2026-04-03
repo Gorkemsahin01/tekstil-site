@@ -1,10 +1,13 @@
+using System.Net.Mail;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.Extensions.Options;
+using MimeKit;
 using Volo.Abp.BackgroundJobs;
+using Volo.Abp.Emailing;
 using Volo.Abp.Emailing.Smtp;
 using Volo.Abp.MailKit;
 using Volo.Abp.MultiTenancy;
@@ -13,7 +16,7 @@ namespace Samplify;
 
 /// <summary>
 /// MailKit SMTP sender that accepts all server certificates.
-/// Needed for mail servers with self-signed or untrusted certificates (e.g. kurumsaleposta.com).
+/// Overrides SendEmailAsync to set cert callback before connect.
 /// </summary>
 public class TrustAllCertMailKitSmtpEmailSender : MailKitSmtpEmailSender
 {
@@ -26,9 +29,11 @@ public class TrustAllCertMailKitSmtpEmailSender : MailKitSmtpEmailSender
     {
     }
 
-    protected override async Task<SmtpClient> BuildClientAsync()
+    protected override async Task SendEmailAsync(MailMessage mail)
     {
-        var client = new SmtpClient();
+        var message = MimeMessage.CreateFromMailMessage(mail);
+
+        using var client = new SmtpClient();
         client.ServerCertificateValidationCallback = AcceptAll;
 
         var host = await SmtpConfiguration.GetHostAsync();
@@ -36,9 +41,16 @@ public class TrustAllCertMailKitSmtpEmailSender : MailKitSmtpEmailSender
         var option = GetSecureSocketOption();
 
         await client.ConnectAsync(host, port, option);
-        await ConfigureClient(client);
 
-        return client;
+        var userName = await SmtpConfiguration.GetUserNameAsync();
+        var password = await SmtpConfiguration.GetPasswordAsync();
+        if (!string.IsNullOrEmpty(userName))
+        {
+            await client.AuthenticateAsync(userName, password);
+        }
+
+        await client.SendAsync(message);
+        await client.DisconnectAsync(true);
     }
 
     private static bool AcceptAll(object sender, X509Certificate? certificate,
