@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Samplify;
 using Samplify.BlogPosts;
 using Samplify.SiteContents;
+using Samplify.Waitlist;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
@@ -31,6 +32,7 @@ public class SamplifyDbContext :
 
     public DbSet<SiteContentSnapshot> SiteContentSnapshots { get; set; }
     public DbSet<BlogPost> BlogPosts { get; set; }
+    public DbSet<WaitlistEntry> WaitlistEntries { get; set; }
 
     #region Entities from the modules
 
@@ -97,6 +99,16 @@ public class SamplifyDbContext :
             b.HasIndex(x => x.Slug).IsUnique();
             b.Property(x => x.BodyTrJson).HasColumnType("text");
             b.Property(x => x.BodyEnJson).HasColumnType("text");
+        });
+
+        builder.Entity<WaitlistEntry>(b =>
+        {
+            b.ToTable(SamplifyConsts.DbTablePrefix + "WaitlistEntries", SamplifyConsts.DbSchema);
+            b.ConfigureByConvention();
+            b.Property(x => x.FullName).IsRequired().HasMaxLength(200);
+            b.Property(x => x.Email).IsRequired().HasMaxLength(256);
+            b.Property(x => x.Company).HasMaxLength(300);
+            b.HasIndex(x => x.Email);
         });
     }
 }

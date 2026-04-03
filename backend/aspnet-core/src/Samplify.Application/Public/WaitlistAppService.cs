@@ -1,29 +1,47 @@
+using System;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Samplify.Waitlist;
+using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Emailing;
 
 namespace Samplify.Public;
 
 /// <summary>
-/// İletişim / bekleme listesi formu — gönderimler yapılandırılmış alıcı e-postasına iletilir (varsayılan: info@samplify.tr).
+/// İletişim / bekleme listesi formu — gönderimler veritabanına kaydedilir ve yapılandırılmış alıcı e-postasına iletilir.
 /// </summary>
 [AllowAnonymous]
 public class WaitlistAppService : SamplifyAppService, IWaitlistAppService
 {
   private readonly IEmailSender _emailSender;
   private readonly IConfiguration _configuration;
+  private readonly IRepository<WaitlistEntry, Guid> _waitlistRepository;
 
-  public WaitlistAppService(IEmailSender emailSender, IConfiguration configuration)
+  public WaitlistAppService(
+    IEmailSender emailSender,
+    IConfiguration configuration,
+    IRepository<WaitlistEntry, Guid> waitlistRepository)
   {
     _emailSender = emailSender;
     _configuration = configuration;
+    _waitlistRepository = waitlistRepository;
   }
 
   public virtual async Task SubmitAsync(SubmitWaitlistInput input)
   {
+    // Veritabanına kaydet
+    var entry = new WaitlistEntry(
+      GuidGenerator.Create(),
+      input.FullName,
+      input.Email,
+      input.Company
+    );
+    await _waitlistRepository.InsertAsync(entry);
+
+    // Email gönder
     var to = _configuration["Waitlist:RecipientEmail"]?.Trim();
     if (string.IsNullOrEmpty(to))
     {
