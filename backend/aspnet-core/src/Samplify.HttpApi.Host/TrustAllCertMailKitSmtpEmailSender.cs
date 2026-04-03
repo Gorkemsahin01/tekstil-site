@@ -1,4 +1,3 @@
-using System.Net.Mail;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
@@ -29,7 +28,7 @@ public class TrustAllCertMailKitSmtpEmailSender : MailKitSmtpEmailSender
     {
     }
 
-    protected override async Task SendEmailAsync(MailMessage mail)
+    protected override async Task SendEmailAsync(System.Net.Mail.MailMessage mail)
     {
         var message = MimeMessage.CreateFromMailMessage(mail);
 
