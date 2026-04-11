@@ -8,11 +8,14 @@ import {
 import type { SiteContent } from './types';
 
 const TR_HOME = {
-  heroBadge: "Geleceğin Ür-Ge ve Numune Platformu",
-  heroTitleLine1: 'Tekstilde',
+  heroBadge: 'Geleceğin Ür-Ge Platformu',
+  heroTitleLine1: 'Dikişli Ürünler',
+  heroTitleLine2: 'Endüstrisinde',
   heroTitleHighlight: 'Yeni Bir Çağ.',
   heroSubtitle:
-    'Karmaşık Excel tablolarına, kaybolan proto numunelerine ve bitmeyen redlining revizyonlarına veda edin. Samplify.tr ile Ür-Ge sürecinizi hızlandırın, critical path üzerinde tam kontrol sağlayın.',
+    'Karmaşık Excel tablolarına, kaybolan proto numunelerine ve bitmeyen redlining revizyonlarına veda edin. Samplify.tr ile Ür-Ge sürecinizi hızlandırın, Critical Path üzerinde tam kontrol sağlayın.',
+  heroStatProductionValue: '+45%',
+  heroStatWorkshopValue: '148/196',
   primaryCta: 'Bekleme Listesine Katıl',
   secondaryCta: 'Modülleri Keşfet',
   featuresHeading: 'Karmaşayı Reddedin.',
@@ -22,61 +25,62 @@ const TR_HOME = {
   f1Title: 'Esnek Modüler Yapı',
   f1Body:
     'Hantal paketlere zorunlu değilsiniz. Sadece numune departmanınızın bugün ihtiyacı olan çözümlerle başlayın; Ür-Ge süreçleriniz geliştikçe yeni modüller ekleyerek kendi ekosisteminizi adım adım büyütün.',
-  f2Title: 'Işık Hızında',
+  f2Title: 'Kesintisiz Senkronizasyon',
   f2Body:
-    'Gerçek zamanlı veri akışı ile anında aksiyon alın. ERP/PLM entegrasyonlarıyla çift yönlü veri senkronizasyonu sağlayın.',
+    'Gerçek zamanlı veri akışı ile sahada anında aksiyon alın. Mevcut ERP/PLM sistemlerinizle tam entegrasyon sağlayarak, departmanlar arası çift yönlü veri senkronizasyonu kurun ve manuel veri girişini sıfırlayın.',
   f3Title: 'Banka Düzeyinde Güvenlik',
-  f3Body: 'Tüm tasarımlarınız ve verileriniz bulutta güvende.',
-  f4Title: 'Görsel Raporlama',
+  f3Body:
+    'Tüm tasarımlarınız, tech pack detaylarınız ve fikri mülkiyetiniz bulutta %100 güvende. Verilerinize sadece yetkilendirdiğiniz kişiler ulaşır.',
+  f4Title: 'Dinamik Görsel Raporlama',
   f4Body:
-    'Verileri okumak hiç bu kadar keyifli olmamıştı. Akıllı dashboardlar ile kontrol sizde.',
+    "Süreçteki darboğazları tek bakışta tespit edin. Akıllı dashboard'lar ile karmaşık veriler arasında kaybolmayın; KPI takibini saniyeler içinde yapıp operasyonu yönetin.",
   f4LinkLabel: 'Detayları İncele',
   ctaTitle: 'Gelecek Çok Yakında.',
   ctaSubtitle:
-    'Samplify.tr ile tekstil numune yönetiminde yeni bir standart belirliyoruz. İlk deneyenlerden olmak için yerinizi ayırtın.',
+    'Samplify.tr ile Dikişli Ürünler Endüstrisi numune yönetiminde yeni bir standart belirliyoruz. İlk deneyenlerden olmak için yerinizi ayırtın.',
   ctaButton: 'Erken Erişim Talep Et',
 } as const;
 
 const TR_MODULES = {
   badge: 'Geliştirme Aşamasında',
-  titleLine1: 'Modüler Yapı.',
-  titleLine2: 'Sıfır Karmaşa.',
+  titleLine1: 'Modüler Yapı',
+  titleLine2: 'Sıfır Karmaşa',
   intro:
-    "Samplify.tr ekosistemi, tekstil Ür-Ge'sinin dinamiklerine uyum sağlayacak esnek bir altyapıyla tasarlandı. İhtiyacınız olan modüllerle başlayın, yeni çözümlerimizle ekosisteminizi sınır tanımadan genişletin.",
+    'Samplify.tr ekosistemi, Dikişli Ürünler Endüstrisinin hızlı ve karmaşık Ür-Ge dinamiklerine tam uyum sağlamak için esnek bir altyapıyla tasarlandı. Kullanmayacağınız hantal özelliklere boğulmayın; sadece ihtiyacınız olan modüllerle başlayın ve operasyonunuz büyüdükçe ekosisteminizi sınır tanımadan genişletin.',
   stTitle: 'Trackify',
   stBody:
-    'Numune planlama ve üretim sürecini şansa bırakmayın. Kumaş girişinden PP Sample onayına kadar her adımı tek bir platformda planlayın ve görselleştirin. Atölye, modelhane ve ofis arasındaki duvarları yıkarak critical path üzerinde tam kontrol sağlayın.',
+    'Numune planlama ve üretim süreçlerinizi şansa bırakmayın. İlk numune talebinden nihai PP Sample onayına kadar her adımı tek bir dijital platformda görselleştirin. İşletme, modelhane ve ofisler arasındaki iletişimsizlik silolarını yıkarak Critical Path üzerinde uçtan uca tam kontrol sağlayın.',
   stFeatures: [
-    'Görsel Kanban Panoları',
+    'Görsel Kanban Panoları ile Süreç Takibi',
     'Gerçek Zamanlı Süreç Planlama',
-    'Revizyon Zaman Çizelgesi',
+    'Dinamik Revizyon Zaman Çizelgesi',
   ] as [string, string, string],
-  stCardTag: 'v1.0 Yakında',
-  stCardTitle: 'Numune Yönetimi Yeniden Tanımlanıyor',
+  stCardTag: 'v1.0 Çok Yakında',
+  stCardTitle: 'Veri Odaklı Numune Yönetimiyle Tanışmaya Hazır Olun.',
   mfTitle: 'Measurify',
   mfBody:
-    'Kalıp ve ölçü yönetiminde sıfır hata politikası. Dinamik ölçü tabloları, otomatik tolerans hesaplamaları ve tek tıkla Tech Pack oluşturma.',
+    'Kalıp ve ölçü yönetiminde sıfır hata politikasıyla tanışın. Dinamik ölçü tabloları, otomatik tolerans hesaplamaları ve tek tıkla Tech Pack oluşturma özellikleriyle manuel hataları bitirin, redlining (düzeltme) sürelerini minimuma indirin.',
   mfFeatures: [
     'Akıllı Çekmezlik Hesaplama',
-    'Versiyon Karşılaştırma',
-    'PDF Tech Pack Çıktısı',
+    'Dinamik Versiyon Karşılaştırma',
+    'Tek Tıkla PDF Tech Pack Çıktısı',
   ] as [string, string, string],
-  mfCardTag: 'v1.0 Yakında',
-  mfCardTitle: 'Milimetrik Hassasiyet',
+  mfCardTag: 'v1.0 Çok Yakında',
+  mfCardTitle: 'Milimetrik Hassasiyet, Sıfır Hata.',
 } as const;
 
 const TR_ABOUT = {
-  titleLine1: 'Tekstilin',
-  titleLine2: 'Dijital Geleceği.',
+  titleLine1: 'Dikişli Ürünler Endüstrisinin',
+  titleLine2: 'Dijital Geleceği',
   visionLabel: 'Vizyonumuz',
   visionTitle:
-    "Geleneksel tekstil Ür-Ge'sini, modern yazılımın gücü ve çevikliğiyle baştan yaratıyoruz.",
+    'Geleneksel Dikişli Ürünler Endüstrisi Ür-Ge süreçlerini, modern yazılımın gücü ve çevikliğiyle baştan tanımlıyoruz.',
   whyLabel: 'Neden Samplify.tr?',
   whyBody:
     'Çünkü biz sadece masa başında kod yazmıyoruz; sahayı yaşıyoruz. Atölyenin tozunu, o first-hit numuneyi yetiştirme telaşını ve tek bir ölçü hatasının devasa maliyetini çok iyi biliyoruz. Sektörün içinden gelen bu tecrübeyi, karmaşayı bitiren çevik web teknolojileriyle harmanlıyoruz.',
   ctaTitle: 'Hikayenin Parçası Olun',
   ctaBody:
-    'Samplify.tr geliştirme aşamasında. Sektörü değiştirecek bu ürünün ilk kullanıcılarından olmak için bekleme listemize katılın.',
+    'Samplify.tr geliştirme aşamasında. Dikişli Ürünler Endüstrisini değiştirecek bu platformun ilk kullanıcılarından olmak için bekleme listemize katılın.',
   ctaButton: 'Erken Erişim Talep Et',
 } as const;
 

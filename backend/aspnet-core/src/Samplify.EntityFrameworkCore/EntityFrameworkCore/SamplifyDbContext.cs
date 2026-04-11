@@ -33,6 +33,7 @@ public class SamplifyDbContext :
     public DbSet<SiteContentSnapshot> SiteContentSnapshots { get; set; }
     public DbSet<BlogPost> BlogPosts { get; set; }
     public DbSet<WaitlistEntry> WaitlistEntries { get; set; }
+    public DbSet<WaitlistJobTitle> WaitlistJobTitles { get; set; }
 
     #region Entities from the modules
 
@@ -109,6 +110,16 @@ public class SamplifyDbContext :
             b.Property(x => x.Email).IsRequired().HasMaxLength(256);
             b.Property(x => x.Company).HasMaxLength(300);
             b.HasIndex(x => x.Email);
+        });
+
+        builder.Entity<WaitlistJobTitle>(b =>
+        {
+            b.ToTable(SamplifyConsts.DbTablePrefix + "WaitlistJobTitles", SamplifyConsts.DbSchema);
+            b.ConfigureByConvention();
+            b.HasIndex(x => x.Code).IsUnique();
+            b.Property(x => x.Code).HasMaxLength(64).IsRequired();
+            b.Property(x => x.NameTr).HasMaxLength(256).IsRequired();
+            b.Property(x => x.NameEn).HasMaxLength(256).IsRequired();
         });
     }
 }

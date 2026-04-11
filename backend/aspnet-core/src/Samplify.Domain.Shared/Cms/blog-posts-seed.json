@@ -7,23 +7,23 @@
     "categoryTr": "Dijital dönüşüm",
     "categoryEn": "Digital transformation",
     "date": "2026-03-12",
-    "titleTr": "Numune takibinde görünürlük: Excel’den çıkmak neden kritik?",
-    "titleEn": "Visibility in sample tracking: why moving beyond Excel matters",
-    "excerptTr": "Kayıp revizyonlar ve dağınık iletişim, tekstilde maliyeti görünmez kılar. Merkezi bir akışta veriyi tekilleştirmenin ilk adımları.",
-    "excerptEn": "Lost revisions and scattered communication hide cost. First steps to a single source of truth in a central flow.",
+    "titleTr": "Numune Takibinde Görünürlük: Excel’den Çıkmak Neden Kritik?",
+    "titleEn": "Visibility in sample tracking: why leaving Excel is critical",
+    "excerptTr": "Görünmeyen gecikmelere ve Excel karmaşasına son verin. Samplify.tr ile numune süreçlerinizi tek çatı altında toplayarak Critical Path üzerinde tam kontrol sağlamak için erken erişim listemize katılın.",
+    "excerptEn": "End invisible delays and Excel chaos. Join our early access list to bring your sample processes under one roof with Samplify.tr and gain full control over the Critical Path.",
     "readMinutesTr": "6 dk",
     "readMinutesEn": "6 min",
     "bodyTr": [
-      "Tekstilde numune süreci, markanın vitrinidir; aynı zamanda en çok sürtünmenin yaşandığı alanlardan biridir. Excel ve mesajlaşma uygulamalarıyla yürütülen takip, küçük ekiplerde işe yarasa da ölçek büyüdükçe “kim neyi onayladı?” sorusunun cevabı dağılır.",
-      "Merkezi bir akışta veriyi tekilleştirmek, yalnızca IT projesi değil; revizyonların tekrarını azaltan, tedarikçi ile atölye arasındaki gerilimi düşüren bir üretim kararıdır. İlk adım, kritik durumların (gecikme, red, ikinci numune) tek ekranda görünür olmasıdır.",
-      "Samplify.tr yaklaşımında, numune adımlarını görsel kanban ve net zaman çizelgeleriyle takip etmek, ekiplerin aynı dili konuşmasını sağlar. Excel’i tamamen yok saymak şart değil; ancak “tek doğru kaynak”ın bulutta ve erişilebilir olması şart.",
-      "Sonuç olarak: görünürlük, maliyeti düşürür. Çünkü görünmeyen gecikme, görünmeyen stok ve görünmeyen itibar kaybı demektir."
+      "Dikişli Ürünler Endüstrisinde numune süreci, markanın vitrinidir; aynı zamanda en çok sürtünmenin yaşandığı alanlardan biridir. Excel ve mesajlaşma uygulamalarıyla yürütülen takip, küçük ekiplerde işe yarasa da ölçek büyüdükçe “kim neyi onayladı?” sorusunun cevabı dağılır.",
+      "Merkezi bir akışta veriyi tekilleştirmek, yalnızca bir IT projesi değil; revizyonların tekrarını azaltan, müşteri temsilcisi ile modelhane arasındaki gerilimi düşüren stratejik bir üretim kararıdır. İlk adım, kritik durumların (gecikme, ret, second proto talebi) tek ekranda görünür olmasıdır.",
+      "Samplify.tr yaklaşımında, numune adımlarını görsel kanban ve net zaman çizelgeleriyle takip etmek, ekiplerin aynı dili konuşmasını sağlar. Excel’i tamamen yok saymak şart değil; ancak “tek doğru kaynağın” (Single Source of Truth) bulutta ve herkes için anında erişilebilir olması şart.",
+      "Sonuç olarak: Görünürlük, maliyeti düşürür. Çünkü görünmeyen gecikme; görünmeyen stok ve görünmeyen itibar kaybı demektir."
     ],
     "bodyEn": [
-      "In textiles, the sample journey is both your showcase and a major source of friction. Tracking in spreadsheets and chat apps can work for tiny teams, but as you scale, the answer to “who approved what?” fragments.",
-      "Consolidating data in a central flow is not only an IT initiative; it is a production decision that reduces duplicate revisions and tension between suppliers and the shop floor. The first step is making critical states (delay, rejection, second round) visible on one surface.",
-      "With Samplify.tr, visual Kanban boards and clear timelines help teams speak one language. You do not have to ban Excel overnight—but you do need a single source of truth that lives in the cloud and is accessible.",
-      "In short: visibility cuts cost, because invisible delay means invisible inventory and invisible brand damage."
+      "In the sewn products industry, the sample process is the brand’s showcase—and one of the areas with the most friction. Tracking via Excel and messaging apps may work for small teams, but as you scale, the answer to “who approved what?” fragments.",
+      "Consolidating data in a central flow is not merely an IT project; it is a strategic production decision that reduces repeat revisions and eases tension between merchandisers and the sample room. The first step is making critical situations (delay, rejection, second-proto requests) visible on one screen.",
+      "In the Samplify.tr approach, tracking sample steps with visual Kanban and clear timelines helps teams speak the same language. You do not have to abandon Excel entirely—but the “single source of truth” must live in the cloud and be instantly accessible to everyone.",
+      "In short: visibility reduces cost—because invisible delay means invisible inventory and invisible reputational loss."
     ]
   },
   {
@@ -34,21 +34,21 @@
     "categoryTr": "Üretim",
     "categoryEn": "Production",
     "date": "2026-03-05",
-    "titleTr": "Atölye ile ofis arasında tek dil: Tech Pack ve ölçü tabloları",
-    "titleEn": "One language between shop floor and office: Tech Packs and grading",
-    "excerptTr": "Ölçü toleransları ve versiyonlar net değilse, hata kaçınılmaz. Ortak bir referansın gücü.",
-    "excerptEn": "When tolerances and versions are unclear, errors follow. The power of a shared reference.",
+    "titleTr": "Atölye ile Ofis Arasında Tek Dil: Dinamik Tech Pack ve Ölçü Tabloları",
+    "titleEn": "One language between workshop and office: dynamic Tech Pack and measurement tables",
+    "excerptTr": "Tech Pack sahada “sözleşme”; Excel’de çakışan versiyonlar ve güncel olmayan çıktılar risk. Measurify ile dinamik karşılaştırma ve tolerans.",
+    "excerptEn": "The Tech Pack is your contract in production; conflicting Excel versions and outdated specs are the risk—Measurify brings dynamic comparison and tolerance control.",
     "readMinutesTr": "5 dk",
     "readMinutesEn": "5 min",
     "bodyTr": [
-      "Tech Pack, tasarımın “sözleşmesi”dir: hangi dikiş, hangi tolerans, hangi aksesuar. Sorun çoğu zaman dosyanın kendisi değil; versiyonların çakışması ve atölyede güncel olmayan çıktının kullanılmasıdır.",
-      "Ölçü tablolarında net tolerans aralıkları ve revizyon numarası, tartışmayı bitirir. Dijital ortamda, aynı tablonun PDF’si ile üretim ekranındaki verinin eşlenmesi, “milimetrik” hataların önüne geçer.",
-      "Samplify.tr ekosisteminde Measurify modülü bu dengeyi hedefler: versiyon karşılaştırma, tolerans mantığı ve tek tıkla standart çıktılar. Amaç hızlı olmak değil, önce doğru olmak; sonra hızı ölçeklemek."
+      "Tech Pack, dikişli ürünler üretiminde tasarımın ‘sözleşmesi’dir: Hangi dikiş tipi, hangi tolerans payı, hangi aksesuar kullanılacak? Sahada sorun çoğu zaman dosyanın eksikliği değil; Excel’de dolaşan eski versiyonların çakışması ve atölyede güncel olmayan çıktının (outdated spec) kullanılmasıdır.",
+      "Ölçü tablolarında net tolerans aralıkları ve bulut tabanlı revizyon takibi, modelhane ile müşteri temsilcisi (merchandiser) arasındaki bitmek bilmeyen tartışmayı anında bitirir. Dijital ortamda, onaylanan tablonun verileri ile üretim ekranındaki referansın eşzamanlı olması, o korkulan ‘milimetrik’ hataların ve çöpe giden size set’lerin önüne geçer.",
+      "Samplify.tr ekosistemindeki Measurify modülü tam olarak bu dengeyi hedefler: Dinamik versiyon karşılaştırma, otomatik tolerans hesaplama ve tek tıkla standart Tech Pack çıktıları. Amacımız sadece süreci hızlandırmak değil; önce ‘sıfır hata’ ile doğruyu bulmak, sonra bu kaliteyi ölçeklemektir. 📐 ✂️"
     ],
     "bodyEn": [
-      "A Tech Pack is the contract of a design: which seam, which tolerance, which trim. The issue is often not the file itself, but conflicting versions and shop-floor printouts that are out of date.",
-      "Clear tolerance bands and revision numbers on measurement tables end debates. Digitally aligning the PDF with live production data prevents “millimetric” mistakes.",
-      "The Measurify module in the Samplify.tr ecosystem aims for that balance: version diff, tolerance logic, and one-click standard outputs. The goal is to be right first—then scale speed."
+      "In sewn-products manufacturing, the Tech Pack is the “contract” of the design: which seam type, which tolerance allowance, which accessory? On the floor, the problem is often not a missing file—but conflicting old versions in Excel and outdated specs used in the workshop.",
+      "Clear tolerance bands and cloud-based revision tracking end the endless back-and-forth between the sample room and the merchandiser. Digitally, keeping approved table data in sync with the reference on the production screen prevents those dreaded “millimetric” mistakes and wasted size sets.",
+      "The Measurify module in the Samplify.tr ecosystem targets exactly this balance: dynamic version comparison, automatic tolerance calculation, and one-click standard Tech Pack outputs. Our goal is not only to speed things up—first to get it right with “zero error,” then to scale that quality. 📐 ✂️"
     ]
   },
   {
@@ -56,24 +56,26 @@
     "slug": "moduler-erp-buyume",
     "featured": false,
     "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80",
-    "categoryTr": "ERP",
-    "categoryEn": "ERP",
+    "categoryTr": "Ür-Ge",
+    "categoryEn": "R&D",
     "date": "2026-02-28",
-    "titleTr": "Modüler ERP: ihtiyacınız olanı seçin, büyüdükçe genişletin",
-    "titleEn": "Modular ERP: pick what you need, expand as you grow",
-    "excerptTr": "Hepsi-veya-hiç yerine aşamalı dijitalleşme. Sample Tracker ve Measurify gibi odaklı modüllerin avantajı.",
-    "excerptEn": "Phased digitization instead of all-or-nothing. The upside of focused modules like Sample Tracker and Measurify.",
+    "titleTr": "Modüler Yapı: İhtiyacınız Olanı Seçin, Büyüdükçe Genişletin",
+    "titleEn": "Modular by design: choose what you need, expand as you grow",
+    "excerptTr": "Devasa ERP yerine nokta atışı modüller: Trackify, Measurify ve sahada gerçekten kullanılan yazılım.",
+    "excerptEn": "Surgical modules instead of monolithic ERP: Trackify, Measurify, and software people actually use on the floor.",
     "readMinutesTr": "4 dk",
     "readMinutesEn": "4 min",
     "bodyTr": [
-      "Büyük ERP dönüşümleri çoğu zaman “dondu”: kapsam şişti, eğitim yetişmedi, iş süreçleri bekledi. Modüler yaklaşım ise önce acı noktayı çözer: numune akışı, ölçü yönetimi, raporlama gibi.",
-      "Sample Tracker ve Measurify gibi odaklı ürünler, kullanıcıların günlük işine doğrudan dokunduğu için benimsenme oranı yükselir. Entegrasyonlar aşamalı eklenebilir; önemli olan ilk modülün sahada gerçekten kullanılmasıdır.",
-      "Samplify.tr felsefesi: önce değer, sonra kapsam. Küçük ama ölçülebilir kazanımlar, organizasyonun dijitale güvenini inşa eder."
+      "Devasa ERP/PLM paketlerini devreye almak çoğu zaman sahanın hızını keser: Proje kapsamı sürekli şişer, bitmek bilmeyen eğitimler operasyonu yavaşlatır ve atölyedeki kullanıcılar o karmaşık arayüzleri kullanmayı reddeder. Sonuç; devasa bütçeler harcanan ama rafta tozlanan yazılımlar olur.",
+      "Modüler yaklaşım ise nokta atışı bir müdahale gibidir: Önce en büyük acı noktanızı (pain point) çözer. Yola sadece numune Critical Path takibi (Trackify) veya ölçü tolerans yönetimi (Measurify) gibi odaklı ürünlerle çıkarsınız.",
+      "Bu modüller kullanıcıların günlük işine ve gerçek dertlerine doğrudan dokunduğu için, ekibin yazılımı benimseme ve adaptasyon oranı hızla yükselir. Mevcut sistemlerinizle entegrasyonlar aşamalı olarak eklenebilir; çünkü günün sonunda önemli olan, yazılımın ne kadar çok özelliğe sahip olduğu değil, sahada gerçekten kullanılıyor olmasıdır.",
+      "Samplify.tr felsefesi nettir: Önce değer üret, sonra kapsamı genişlet. Elde edilen hızlı ve ölçülebilir kazanımlar, organizasyonun dijital dönüşüme olan güvenini sarsılmaz bir şekilde inşa eder. 🚀"
     ],
     "bodyEn": [
-      "Large ERP transformations often freeze: scope balloons, training lags, processes wait. A modular approach fixes the pain point first—sample flow, measurements, reporting.",
-      "Focused products like Sample Tracker and Measurify touch daily work directly, so adoption rises. Integrations can arrive in phases; what matters is that the first module is actually used on the floor.",
-      "The Samplify.tr philosophy: value first, breadth second. Small, measurable wins build organizational trust in digital change."
+      "Rolling out massive ERP/PLM suites often slows the shop floor: scope keeps swelling, endless training drags operations down, and workshop users refuse those complex UIs. The result: huge budgets spent on software that gathers dust on the shelf.",
+      "A modular approach is a surgical intervention: it solves your biggest pain point first. You start with focused products—sample Critical Path tracking (Trackify) or tolerance management (Measurify).",
+      "Because these modules touch users’ daily work and real problems, adoption rises fast. Integrations with existing systems can be phased in—because in the end, feature count matters less than whether the software is actually used in the field.",
+      "The Samplify.tr philosophy is clear: create value first, then broaden scope. Fast, measurable wins build unshakable trust in digital transformation. 🚀"
     ]
   },
   {
@@ -84,23 +86,23 @@
     "categoryTr": "Güvenlik",
     "categoryEn": "Security",
     "date": "2026-02-18",
-    "titleTr": "Tasarım verilerinizi bulutta güvenle tutmanın temelleri",
-    "titleEn": "Basics of keeping design data safe in the cloud",
-    "excerptTr": "Erişim katmanları, yedekleme ve sürüm kontrolü: markanızın en değerli varlığı için minimum standartlar.",
-    "excerptEn": "Access layers, backups, and versioning: minimum standards for your brand’s most valuable asset.",
+    "titleTr": "Tasarım Verilerinizi Bulutta Güvenle Tutmanın Temelleri",
+    "titleEn": "Foundations for keeping your design data secure in the cloud",
+    "excerptTr": "IP, B2B güvenlik, MFA ve kusursuz revizyon geçmişi: dikişli ürünlerde tasarım verisi için minimum standartlar.",
+    "excerptEn": "IP, B2B security, MFA, and flawless revision history: minimum standards for design data in sewn products.",
     "readMinutesTr": "7 dk",
     "readMinutesEn": "7 min",
     "bodyTr": [
-      "Tasarım dosyaları, tekstil markasının arşividir. USB ve kişisel bulut paylaşımları hızlıdır; fakat denetim izi ve erişim kontrolü açısından risklidir.",
-      "Minimum standartlar: rol bazlı erişim, çok faktörlü kimlik doğrulama (mümkünse), düzenli yedekleme ve silinen dosyalar için saklama politikası. Revizyon geçmişi, “hangi dosya fabrikada?” sorusunun hukuki ve operasyonel cevabını sağlar.",
-      "Buluta taşınan veri, yalnızca depolama değil; iş sürekliliği ve iş ortaklarıyla güven ilişkisidir. Samplify.tr vizyonunda güvenlik, sonradan eklenen bir katman değil; ürünün omurgasıdır.",
-      "Ekibinize net kurallar: hassas çıktılar yalnızca onaylı kanallardan, watermark ve tarih damgasıyla paylaşılır. Basit disiplin, büyük sızıntıları önler."
+      "Tasarım dosyaları ve kalıplar, dikişli ürünler endüstrisinde faaliyet gösteren bir markanın en değerli fikri mülkiyetidir (IP). USB bellekler, mesajlaşma uygulamaları ve kişisel bulut paylaşımları sahada pratik görünse de; denetim izi (audit trail) ve yetkilendirme açısından devasa bir güvenlik riski taşır.",
+      "Minimum B2B güvenlik standartları şunları içermelidir: Rol bazlı erişim, çok faktörlü kimlik doğrulama (MFA), anlık yedekleme ve silinen dosyalar için sıkı bir saklama politikası. Kusursuz bir revizyon geçmişi tutmak, “Şu an fabrikada hangi Tech Pack versiyonu dikiliyor?” sorusunun hem hukuki hem de operasyonel tek garantisidir.",
+      "Veriyi güvenli bir bulut altyapısına taşımak sadece bir depolama hamlesi değil; kesintisiz iş sürekliliği ve fason üreticilerle (subcontractors) kurulan güven ilişkisinin temelidir. Samplify.tr vizyonunda veri güvenliği, sisteme sonradan yama yapılan bir katman değil; platformun doğrudan omurgasıdır.",
+      "Ekibinize koyacağınız kural net olmalıdır: Hassas ölçü tabloları ve çizimler yalnızca onaylı platformlar üzerinden, dinamik watermark (filigran) ve tarih/saat damgasıyla paylaşılır. Basit ve sistematik bir dijital disiplin, telafisi olmayan büyük veri sızıntılarını daha doğmadan önler. 🛡️"
     ],
     "bodyEn": [
-      "Design files are the archive of a textile brand. USB drives and personal cloud shares are fast—but risky for audit trails and access control.",
-      "Minimum standards: role-based access, multi-factor authentication where possible, regular backups, and retention policies for deleted files. Revision history answers “which file reached the factory?” legally and operationally.",
-      "Data in the cloud is not only storage; it is business continuity and trust with partners. In the Samplify.tr vision, security is not a bolt-on—it is core.",
-      "Simple team rules: sensitive exports only through approved channels, with watermarks and timestamps. Simple discipline prevents large leaks."
+      "Design files and patterns are a brand’s most valuable intellectual property (IP) in the sewn products industry. USB drives, messaging apps, and personal cloud shares may feel practical on the floor—but they pose massive security risks for audit trails and authorization.",
+      "Minimum B2B security standards should include: role-based access, multi-factor authentication (MFA), real-time backups, and a strict retention policy for deleted files. Flawless revision history is the only guarantee—legal and operational—to answer “Which Tech Pack version is being sewn at the factory right now?”",
+      "Moving data to secure cloud infrastructure is not merely a storage exercise; it is the foundation of business continuity and trust with subcontractors. In the Samplify.tr vision, data security is not a layer patched on later—it is the backbone of the platform.",
+      "The rule you set for your team must be clear: sensitive measurement tables and drawings are shared only through approved platforms, with dynamic watermarks and date/time stamps. Simple, systematic digital discipline stops irreparable large data breaches before they happen. 🛡️"
     ]
   }
 ]

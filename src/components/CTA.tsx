@@ -18,7 +18,7 @@ export default function CTA() {
         >
           <div className="absolute inset-0 bg-gradient-to-br from-brand-900/40 via-gray-900 to-indigo-950/80" />
           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.12)_1px,transparent_1px)] bg-[size:32px_32px] opacity-[0.07]" />
-
+          
           <div className="relative z-10">
             <h2 className="mb-8 text-4xl font-black tracking-tight text-white md:text-6xl">{h.ctaTitle}</h2>
             <p className="mx-auto mb-12 max-w-2xl text-xl font-medium text-gray-400">{h.ctaSubtitle}</p>

@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Activity, ArrowRight, Sparkles, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -31,9 +30,18 @@ export default function Hero() {
               {h.heroBadge}
             </div>
 
-            <h1 className="mb-8 text-6xl font-black leading-[1.1] tracking-tighter text-gray-900 dark:text-white md:text-8xl lg:text-[7rem]">
-              {h.heroTitleLine1} <br className="hidden md:block" />
-              <span className="text-gradient">{h.heroTitleHighlight}</span>
+            <h1 className="mb-8 flex flex-col items-center gap-y-1 text-6xl font-black tracking-tighter text-gray-900 dark:text-white md:gap-y-1.5 md:text-8xl lg:gap-y-2 lg:text-[7rem]">
+              <span className="block leading-[1.12] md:leading-[1.15] lg:leading-[1.18]">
+                {h.heroTitleLine1}
+              </span>
+              {h.heroTitleLine2?.trim() ? (
+                <span className="block leading-[1.12] md:leading-[1.15] lg:leading-[1.18]">
+                  {h.heroTitleLine2.trim()}
+                </span>
+              ) : null}
+              <span className="text-gradient block leading-[1.12] md:leading-[1.15] lg:leading-[1.18]">
+                {h.heroTitleHighlight}
+              </span>
             </h1>
 
             <p className="mx-auto mb-12 max-w-3xl text-xl font-medium leading-relaxed text-gray-500 dark:text-gray-400 md:text-2xl">
@@ -75,7 +83,7 @@ export default function Hero() {
             </div>
             <div>
               <p className="text-sm font-bold text-gray-500 dark:text-gray-400">{ui.heroStatProduction}</p>
-              <p className="text-xl font-black text-gray-900 dark:text-white">+45%</p>
+              <p className="text-xl font-black text-gray-900 dark:text-white">{h.heroStatProductionValue}</p>
             </div>
           </motion.div>
 
@@ -89,7 +97,7 @@ export default function Hero() {
             </div>
             <div>
               <p className="text-sm font-bold text-gray-500 dark:text-gray-400">{ui.heroStatWorkshop}</p>
-              <p className="text-xl font-black text-gray-900 dark:text-white">12/12</p>
+              <p className="text-xl font-black text-gray-900 dark:text-white">{h.heroStatWorkshopValue}</p>
             </div>
           </motion.div>
 

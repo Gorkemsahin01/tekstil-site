@@ -4,6 +4,7 @@ import { initAbpCsrf } from './api/abpClient';
 import ScrollToTop from './components/ScrollToTop';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import WhatsAppFloat from './components/WhatsAppFloat';
 import Home from './pages/Home';
 import ModulesPage from './pages/ModulesPage';
 import About from './pages/About';
@@ -28,6 +29,7 @@ function PublicShell() {
       <main className="flex-grow">
         <Outlet />
       </main>
+      <WhatsAppFloat />
       <Footer />
     </div>
   );

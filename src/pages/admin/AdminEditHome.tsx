@@ -106,6 +106,12 @@ export default function AdminEditHome() {
             onChange={(v) => patchHome({ heroTitleLine1: v })}
           />
           <AdminField
+            label="Başlık satırı 2"
+            value={home.heroTitleLine2 ?? ''}
+            onChange={(v) => patchHome({ heroTitleLine2: v })}
+            hint="Boş bırakılırsa bu satır gösterilmez."
+          />
+          <AdminField
             label="Vurgulu başlık (gradient)"
             value={home.heroTitleHighlight}
             onChange={(v) => patchHome({ heroTitleHighlight: v })}
@@ -125,6 +131,18 @@ export default function AdminEditHome() {
             label="İkincil düğme"
             value={home.secondaryCta}
             onChange={(v) => patchHome({ secondaryCta: v })}
+          />
+          <AdminField
+            label="Hero istatistik — üretim değeri"
+            value={home.heroStatProductionValue ?? '+45%'}
+            onChange={(v) => patchHome({ heroStatProductionValue: v })}
+            hint="Sol yüzen karttaki büyük rakam (örn. +45%)."
+          />
+          <AdminField
+            label="Hero istatistik — kullanıcı değeri"
+            value={home.heroStatWorkshopValue ?? ''}
+            onChange={(v) => patchHome({ heroStatWorkshopValue: v })}
+            hint="Sağ yüzen karttaki değer (örn. 148/196)."
           />
         </div>
 

@@ -1,22 +1,35 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { toast } from 'sonner';
-import { submitWaitlist } from '../api/waitlistApi';
+import { fetchWaitlistJobTitles, submitWaitlist } from '../api/waitlistApi';
 import { USE_CMS_API } from '../config/cms';
+import { useLocale } from '../contexts/LocaleContext';
+import {
+  waitlistJobTitleLabelForMail,
+  waitlistJobTitleOptionsForLocale,
+  type WaitlistJobTitleOption,
+} from '../data/waitlistJobTitles';
 import { usePublicSiteContent } from '../hooks/usePublicSiteContent';
 import { useUiStrings } from '../hooks/useUiStrings';
 
 const WAITLIST_MAIL = 'info@samplify.tr';
 
-function openMailtoWaitlist(fullName: string, company: string, email: string) {
+function openMailtoWaitlist(
+  fullName: string,
+  company: string,
+  email: string,
+  phone: string,
+  jobTitleLine: string
+) {
   const subject = encodeURIComponent(`[Samplify.tr] Bekleme listesi — ${fullName}`);
   const body = encodeURIComponent(
-    `Ad Soyad: ${fullName}\nFirma: ${company || '—'}\nE-posta: ${email}\n`
+    `Ad Soyad: ${fullName}\nFirma: ${company || '—'}\nGörev: ${jobTitleLine}\nE-posta: ${email}\nTelefon: ${phone || '—'}\n`
   );
   window.location.href = `mailto:${WAITLIST_MAIL}?subject=${subject}&body=${body}`;
 }
 
 export default function Contact() {
+  const { locale } = useLocale();
   const { content } = usePublicSiteContent();
   const c = content.contact;
   const ui = useUiStrings();
@@ -24,22 +37,61 @@ export default function Contact() {
   const [fullName, setFullName] = useState('');
   const [company, setCompany] = useState('');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [jobTitleCode, setJobTitleCode] = useState('');
+  const [jobTitles, setJobTitles] = useState<WaitlistJobTitleOption[]>([]);
   const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      if (USE_CMS_API) {
+        try {
+          const rows = await fetchWaitlistJobTitles(locale);
+          if (cancelled) {
+            return;
+          }
+          if (rows.length > 0) {
+            setJobTitles(rows.map((r) => ({ code: r.code, name: r.name })));
+          } else {
+            setJobTitles(waitlistJobTitleOptionsForLocale(locale));
+          }
+        } catch {
+          if (!cancelled) {
+            setJobTitles(waitlistJobTitleOptionsForLocale(locale));
+          }
+        }
+      } else if (!cancelled) {
+        setJobTitles(waitlistJobTitleOptionsForLocale(locale));
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [locale]);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    if (!fullName.trim() || !email.trim()) {
-      toast.error('Ad soyad ve e-posta zorunludur.');
+    if (!fullName.trim() || !email.trim() || !phone.trim() || !jobTitleCode.trim()) {
+      toast.error(
+        locale === 'en'
+          ? 'Full name, work email, phone, and role are required.'
+          : 'Ad soyad, e-posta, telefon ve görev seçimi zorunludur.'
+      );
       return;
     }
 
     setSubmitting(true);
     try {
+      const code = jobTitleCode.trim();
+      const jobTitleLine = waitlistJobTitleLabelForMail(code, locale);
       if (USE_CMS_API) {
         await submitWaitlist({
           fullName: fullName.trim(),
           company: company.trim(),
           email: email.trim(),
+          phone: phone.trim(),
+          jobTitleCode: code,
         });
         toast.success(ui.waitlistSentTitle, {
           description: ui.waitlistSentApi,
@@ -47,8 +99,16 @@ export default function Contact() {
         setFullName('');
         setCompany('');
         setEmail('');
+        setPhone('');
+        setJobTitleCode('');
       } else {
-        openMailtoWaitlist(fullName.trim(), company.trim(), email.trim());
+        openMailtoWaitlist(
+          fullName.trim(),
+          company.trim(),
+          email.trim(),
+          phone.trim(),
+          jobTitleLine
+        );
         toast.success(ui.waitlistSentTitle, {
           description: ui.waitlistSentMailto,
         });
@@ -144,18 +204,55 @@ export default function Contact() {
 
                 <div>
                   <label className="mb-2 ml-2 block text-sm font-bold text-gray-900 dark:text-gray-100">
-                    {ui.contactEmail}
+                    {ui.contactJobTitle}
                   </label>
-                  <input
-                    type="email"
-                    name="email"
-                    autoComplete="email"
+                  <select
+                    name="jobTitleCode"
                     required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={jobTitleCode}
+                    onChange={(e) => setJobTitleCode(e.target.value)}
                     className="w-full rounded-2xl border border-gray-200 bg-gray-50/50 px-6 py-4 outline-none transition-all focus:border-transparent focus:bg-white focus:ring-2 focus:ring-brand-500 dark:border-gray-700 dark:bg-gray-800/50 dark:text-white dark:focus:bg-gray-900"
-                    placeholder={ui.contactPlaceholderEmail}
-                  />
+                  >
+                    <option value="">{ui.contactPlaceholderJobTitle}</option>
+                    {jobTitles.map((t) => (
+                      <option key={t.code} value={t.code}>
+                        {t.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="col-span-2 md:col-span-1">
+                    <label className="mb-2 ml-2 block text-sm font-bold text-gray-900 dark:text-gray-100">
+                      {ui.contactEmail}
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      autoComplete="email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="w-full rounded-2xl border border-gray-200 bg-gray-50/50 px-6 py-4 outline-none transition-all focus:border-transparent focus:bg-white focus:ring-2 focus:ring-brand-500 dark:border-gray-700 dark:bg-gray-800/50 dark:text-white dark:focus:bg-gray-900"
+                      placeholder={ui.contactPlaceholderEmail}
+                    />
+                  </div>
+                  <div className="col-span-2 md:col-span-1">
+                    <label className="mb-2 ml-2 block text-sm font-bold text-gray-900 dark:text-gray-100">
+                      {ui.contactPhone}
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      autoComplete="tel"
+                      required
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      className="w-full rounded-2xl border border-gray-200 bg-gray-50/50 px-6 py-4 outline-none transition-all focus:border-transparent focus:bg-white focus:ring-2 focus:ring-brand-500 dark:border-gray-700 dark:bg-gray-800/50 dark:text-white dark:focus:bg-gray-900"
+                      placeholder={ui.contactPlaceholderPhone}
+                    />
+                  </div>
                 </div>
 
                 <button

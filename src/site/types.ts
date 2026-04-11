@@ -3,8 +3,14 @@ import type { UiStrings } from '../i18n/ui';
 export type HomeContent = {
   heroBadge: string;
   heroTitleLine1: string;
+  /** İkinci satır (ör. “Endüstrisinde”) — boş bırakılırsa Hero’da gösterilmez */
+  heroTitleLine2: string;
   heroTitleHighlight: string;
   heroSubtitle: string;
+  /** Hero sol yüzen kart — istatistik değeri (örn. +45%) */
+  heroStatProductionValue: string;
+  /** Hero sağ yüzen kart — istatistik değeri (örn. 148/196) */
+  heroStatWorkshopValue: string;
   primaryCta: string;
   secondaryCta: string;
   featuresHeading: string;
